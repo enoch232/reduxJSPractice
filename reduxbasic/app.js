@@ -1,23 +1,36 @@
 // import { createStore } from 'redux'
 var redux = require("redux")
 createStore = redux.createStore
+combineReducers = redux.combineReducers
 
-const reducer = function( state, action ){
-  if (action.type === "INC"){
-    return state + action.payload
-  }
-  if (action.type === "DEC"){
-    return state - action.payload
+
+const userReducer = function( state = { name: "Enoch Ko", age: 40}, action){
+  switch(action.type){
+    case "CHANGE_NAME": {
+      state.name = action.payload
+      break
+    }
+    case "CHANGE_AGE": {
+      state.age = action.payload
+      break
+    }
   }
   return state
 }
 
-const store = createStore(reducer, 0)
+const tweetsReducer = function( state = [], action){
+  return state
+}
+
+const reducers = combineReducers({
+  user: userReducer,
+  tweets: tweetsReducer
+})
+
+const store = createStore(reducers)
 
 store.subscribe(function(){
   console.log("state changed! the value is now", store.getState())
-}.bind(this))
+})
 
-store.dispatch({type: "INC", payload: 5})
-store.dispatch({type: "INC", payload: 7})
-store.dispatch({type: "DEC", payload: 12})
+store.dispatch({type: "CHANGE_NAME", payload: "Jaemin Ko"})
