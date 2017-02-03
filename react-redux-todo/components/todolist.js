@@ -1,14 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Component } from 'react'
-import Todo from './todo'
+import FilterTodo from '../containers/filterTodo'
 
 class TodoList extends Component{
   render(){
     return (
       <div>
-        <Todo />
-        <Todo />
+        <FilterTodo />
       </div>
     )
   }

@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-class Todo extends Component{
+
+export default class Todo extends Component{
 
   render(){
     return (
-      <div>
-        Todo
+      <div onClick = {()=>this.props.toggleTodo()}>
+        This
       </div>
     )
   }
+
 }
+
 module.exports = Todo
