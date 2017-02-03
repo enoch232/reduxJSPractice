@@ -10,8 +10,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleTodo: () =>{
-      dispatch({type: "TOGGLE_TODO"})
+    toggleTodo: () => {
+      dispatch({ type: "TOGGLE_TODO" })
+    },
+
+    addTodo() => {
+      dispatch({ type : "ADD_TODO"})
     }
   }
 
