@@ -1,21 +1,21 @@
-initialState = {
+const initialState = {
   counter: 0
 }
-
-
 
 function counter(state = initialState, action){
   switch(action.type){
     case "INCREMENT": {
-      return Object.assign({},state,:wq {counter + action.value})
+      return Object.assign({}, {counter: state.counter + action.value})
 
     }
     case "DECREMENT": {
-      return Object.assign({}, {counter - 1})
+      return Object.assign({}, {counter: state.counter - action.value})
     }
+    default:
+      return Object.assign({}, {counter: state.counter})
 
   }
 
 }
 
-module.exports = counter
+export default counter
