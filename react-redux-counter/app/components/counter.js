@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { incrementCounter, decrementCounter } from '../actions/counterActions.js'
-export default class Counter extends Component {
+import { incrementCounter, decrementCounter } from '../actions/counterActions'
+class Counter extends Component {
   render (){
     return (
       <div>
-        {this.props.counter.getState().counter}
-        <div onClick = {()=> this.props.counter.dispatch(incrementCounter(1))}>
+        {this.props.counter}
+        <div onClick = {()=>this.props.onIncrementClick(1)}>
           Inc
         </div>
-        <div onClick = {()=> this.props.counter.dispatch(decrementCounter(1))}>
+        <div onClick = {()=>this.props.onDecrementClick(1)}>
           Dec
         </div>
       </div>
@@ -20,16 +20,20 @@ export default class Counter extends Component {
 
 }
 //
-// let mapStateToProps = (state) => {
-//   return {
-//     counter: 10
-//   }
-// }
-// let mapDispatchToProps = (dispatch) => {
-//   return {
-//     onIncrementClick: (value) => {
-//       dispatch(incrementCounter(value))
-//     }
-//   }
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Counter)
+let mapStateToProps = (state) => {
+  return {
+    counter: state.counter
+  }
+}
+let mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrementClick: (value) => {
+      dispatch(incrementCounter(value))
+    },
+    onDecrementClick: (value) => {
+      dispatch(decrementCounter(value))
+    }
+  }
+}
+const CounterContainer = connect(mapStateToProps, mapDispatchToProps)(Counter)
+export default CounterContainer

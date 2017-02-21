@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Counter from './components/counter'
-import { createStore, Provider, applyMiddleware } from 'redux'
+import Counter from './components/Counter'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
 import counterReducer from './reducers/counterReducer'
 import thunk from 'redux-thunk'
 import promise from 'redux-promise'
@@ -11,4 +12,4 @@ const store = createStore(
   counterReducer,
   applyMiddleware(thunk, promise, logger)
 );
-ReactDOM.render(<Counter counter = {store}/>, document.getElementById('app'))
+ReactDOM.render(<Provider store = {store}><Counter /></Provider>, document.getElementById('app'))

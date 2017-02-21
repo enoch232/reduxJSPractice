@@ -2,7 +2,7 @@ const initialState = {
   counter: 0
 }
 
-function counter(state = initialState, action){
+function counterReducer(state = initialState, action){
   switch(action.type){
     case "INCREMENT": {
       return Object.assign({}, {counter: state.counter + action.value})
@@ -18,4 +18,4 @@ function counter(state = initialState, action){
 
 }
 
-export default counter
+export default counterReducer
