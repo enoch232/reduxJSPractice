@@ -10,13 +10,16 @@ export default class Todo extends Component{
   _onClick(){
     this.props.addTodo(this.state.text)
   }
+  _toggleTodo(index){
+    this.props.toggleTodo(index)
+  }
   render(){
     return (
       <div>
-        {this.props.todos.map(function(todo, index){
+        {this.props.todos.map((todo) => {
           return (
-            <div key = { index }>
-              {todo.title} - Finished: {todo.finished.toString()}
+            <div key = { todo.id } onClick = {this._toggleTodo.bind(this, todo.id)}>
+              {todo.id}: {todo.title} - Finished: {todo.finished.toString()}
             </div>
           )
         })}
