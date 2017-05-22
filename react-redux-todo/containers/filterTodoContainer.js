@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: "TOGGLE_TODO" })
     },
 
-    addTodo() => {
+    addTodo: () => {
       dispatch({ type : "ADD_TODO"})
     }
   }

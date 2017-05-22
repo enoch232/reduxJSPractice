@@ -1,8 +1,12 @@
 import React from 'react'
 import { Component } from 'react'
 
-class Footer extends Component {
+export default class Footer extends Component {
   render(){
-    return()
+    return (
+      <div>
+        Made by Enoch Ko
+      </div>
+    )
   }
 }
