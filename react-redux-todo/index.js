@@ -12,7 +12,7 @@ import todoReducer from './reducers/todoReducer'
 const store = createStore(todoReducer)
 
 store.subscribe(()=>{
-  console.log("hello")
+
 })
 
 

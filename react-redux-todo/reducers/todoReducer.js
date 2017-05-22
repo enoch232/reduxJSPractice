@@ -8,10 +8,12 @@ const initialState = {
   ]
 }
 
-export default function todo(state = initialState, action){
+export default function todoReducer(state = initialState, action){
   switch(action.type){
     case "ADD_TODO": {
-      return state
+      console.log("add todo")
+      return {todos: [...state.todos, { title: action.text, finished: false }] }
+      // return state
     }
     case "TOGGLE_TODO": {
       return state

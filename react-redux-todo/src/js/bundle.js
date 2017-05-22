@@ -24435,9 +24435,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var store = (0, _redux.createStore)(_todoReducer2.default);
 
-store.subscribe(function () {
-  console.log("hello");
-});
+store.subscribe(function () {});
 
 _reactDom2.default.render(_react2.default.createElement(
   _reactRedux.Provider,
@@ -24514,25 +24512,47 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Todo = function (_Component) {
   _inherits(Todo, _Component);
 
-  function Todo() {
+  function Todo(props) {
     _classCallCheck(this, Todo);
 
-    return _possibleConstructorReturn(this, (Todo.__proto__ || Object.getPrototypeOf(Todo)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Todo.__proto__ || Object.getPrototypeOf(Todo)).call(this, props));
+
+    _this.state = {
+      text: ""
+    };
+    return _this;
   }
 
   _createClass(Todo, [{
-    key: 'render',
+    key: "_onClick",
+    value: function _onClick() {
+      this.props.addTodo(this.state.text);
+    }
+  }, {
+    key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
-        this.props.todos.map(function (todo) {
+        this.props.todos.map(function (todo, index) {
           return _react2.default.createElement(
-            'div',
-            null,
-            todo.title
+            "div",
+            { key: index },
+            todo.title,
+            " - Finished: ",
+            todo.finished.toString()
           );
-        })
+        }),
+        _react2.default.createElement("input", { value: this.state.text, onChange: function onChange(e) {
+            return _this2.setState({ text: e.target.value });
+          } }),
+        _react2.default.createElement(
+          "div",
+          { onClick: this._onClick.bind(this) },
+          "[Add to do]"
+        )
       );
     }
   }]);
@@ -24555,7 +24575,9 @@ module.exports = Todo;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = todo;
+exports.default = todoReducer;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var initialState = {
   todos: [{
@@ -24564,14 +24586,16 @@ var initialState = {
   }]
 };
 
-function todo() {
+function todoReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
 
   switch (action.type) {
     case "ADD_TODO":
       {
-        return state;
+        console.log("add todo");
+        return { todos: [].concat(_toConsumableArray(state.todos), [{ title: action.text, finished: false }]) };
+        // return state
       }
     case "TOGGLE_TODO":
       {
