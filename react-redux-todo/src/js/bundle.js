@@ -24460,6 +24460,8 @@ var _todo = __webpack_require__(223);
 
 var _todo2 = _interopRequireDefault(_todo);
 
+var _todoAction = __webpack_require__(226);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -24471,11 +24473,11 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     toggleTodo: function toggleTodo(id) {
-      dispatch({ type: "TOGGLE_TODO", id: id });
+      dispatch((0, _todoAction.toggleTodoAction)(id));
     },
 
     addTodo: function addTodo(text) {
-      dispatch({ type: "ADD_TODO", text: text });
+      dispatch((0, _todoAction.addTodoAction)(text));
     }
   };
 };
@@ -24595,7 +24597,6 @@ function todoReducer() {
       {
         console.log("add todo");
         return { todos: [].concat(_toConsumableArray(state.todos), [{ title: action.text, finished: false }]) };
-        // return state
       }
     case "TOGGLE_TODO":
       {
@@ -24607,6 +24608,47 @@ function todoReducer() {
       }
   }
 }
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ADD_TODO = exports.ADD_TODO = "ADD_TODO";
+var TOGGLE_TODO = exports.TOGGLE_TODO = "TOGGLE_TODO";
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.toggleTodoAction = exports.addTodoAction = undefined;
+
+var _actionTypes = __webpack_require__(225);
+
+var addTodoAction = exports.addTodoAction = function addTodoAction(text) {
+  return {
+    type: _actionTypes.ADD_TODO,
+    text: text
+  };
+};
+
+var toggleTodoAction = exports.toggleTodoAction = function toggleTodoAction(id) {
+  return {
+    type: _actionTypes.TOGGLE_TODO,
+    id: id
+  };
+};
 
 /***/ })
 /******/ ]);

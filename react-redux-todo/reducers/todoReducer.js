@@ -13,7 +13,6 @@ export default function todoReducer(state = initialState, action){
     case "ADD_TODO": {
       console.log("add todo")
       return {todos: [...state.todos, { title: action.text, finished: false }] }
-      // return state
     }
     case "TOGGLE_TODO": {
       return state
