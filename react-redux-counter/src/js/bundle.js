@@ -26174,8 +26174,6 @@ var Counter = function (_Component) {
 
   return Counter;
 }(_react.Component);
-//
-
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
