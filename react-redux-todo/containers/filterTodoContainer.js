@@ -4,18 +4,18 @@ import Todo from '../components/todo'
 
 const mapStateToProps = (state) => {
   return {
-    todos: "hello!@!"
+    todos: state.todos
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleTodo: () => {
-      dispatch({ type: "TOGGLE_TODO" })
+    toggleTodo: (id) => {
+      dispatch({ type: "TOGGLE_TODO", id: id })
     },
 
-    addTodo: () => {
-      dispatch({ type : "ADD_TODO"})
+    addTodo: (text) => {
+      dispatch({ type : "ADD_TODO", text: text })
     }
   }
 

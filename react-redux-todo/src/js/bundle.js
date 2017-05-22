@@ -10587,32 +10587,7 @@ try {
 module.exports = g;
 
 /***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.store = undefined;
-
-var _redux = __webpack_require__(91);
-
-var _todoReducer = __webpack_require__(224);
-
-var _todoReducer2 = _interopRequireDefault(_todoReducer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var store = exports.store = (0, _redux.createStore)(_todoReducer2.default);
-
-store.subscribe(function () {
-  console.log("hello");
-});
-
-/***/ }),
+/* 94 */,
 /* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24436,6 +24411,8 @@ module.exports = function (module) {
 "use strict";
 
 
+var _redux = __webpack_require__(91);
+
 var _react = __webpack_require__(14);
 
 var _react2 = _interopRequireDefault(_react);
@@ -24450,13 +24427,21 @@ var _todolist2 = _interopRequireDefault(_todolist);
 
 var _reactRedux = __webpack_require__(96);
 
-var _app = __webpack_require__(94);
+var _todoReducer = __webpack_require__(224);
+
+var _todoReducer2 = _interopRequireDefault(_todoReducer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var store = (0, _redux.createStore)(_todoReducer2.default);
+
+store.subscribe(function () {
+  console.log("hello");
+});
+
 _reactDom2.default.render(_react2.default.createElement(
   _reactRedux.Provider,
-  { store: _app.store },
+  { store: store },
   _react2.default.createElement(_todolist2.default, null)
 ), document.getElementById('app'));
 
@@ -24481,18 +24466,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    todos: "hello!@!"
+    todos: state.todos
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    toggleTodo: function toggleTodo() {
-      dispatch({ type: "TOGGLE_TODO" });
+    toggleTodo: function toggleTodo(id) {
+      dispatch({ type: "TOGGLE_TODO", id: id });
     },
 
-    addTodo: function addTodo() {
-      dispatch({ type: "ADD_TODO" });
+    addTodo: function addTodo(text) {
+      dispatch({ type: "ADD_TODO", text: text });
     }
   };
 };
@@ -24538,14 +24523,16 @@ var Todo = function (_Component) {
   _createClass(Todo, [{
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       return _react2.default.createElement(
         'div',
-        { onClick: function onClick() {
-            return _this2.props.toggleTodo();
-          } },
-        'This'
+        null,
+        this.props.todos.map(function (todo) {
+          return _react2.default.createElement(
+            'div',
+            null,
+            todo.title
+          );
+        })
       );
     }
   }]);
@@ -24587,6 +24574,10 @@ function todo() {
         return state;
       }
     case "TOGGLE_TODO":
+      {
+        return state;
+      }
+    default:
       {
         return state;
       }

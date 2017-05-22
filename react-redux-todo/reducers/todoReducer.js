@@ -1,5 +1,5 @@
 
-let initialState = {
+const initialState = {
   todos: [
     {
       title: "Do homework",
@@ -14,6 +14,9 @@ export default function todo(state = initialState, action){
       return state
     }
     case "TOGGLE_TODO": {
+      return state
+    }
+    default: {
       return state
     }
   }
