@@ -10600,30 +10600,13 @@ exports.store = undefined;
 
 var _redux = __webpack_require__(91);
 
-var initialState = {
-  todos: [{
-    title: "Do homework",
-    finished: false
-  }]
-};
+var _todoReducer = __webpack_require__(224);
 
-function todo() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments[1];
+var _todoReducer2 = _interopRequireDefault(_todoReducer);
 
-  switch (action.type) {
-    case "ADD_TODO":
-      {
-        return state;
-      }
-    case "TOGGLE_TODO":
-      {
-        return state;
-      }
-  }
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var store = exports.store = (0, _redux.createStore)(todo);
+var store = exports.store = (0, _redux.createStore)(_todoReducer2.default);
 
 store.subscribe(function () {
   console.log("hello");
@@ -24574,6 +24557,41 @@ exports.default = Todo;
 
 
 module.exports = Todo;
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = todo;
+
+var initialState = {
+  todos: [{
+    title: "Do homework",
+    finished: false
+  }]
+};
+
+function todo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case "ADD_TODO":
+      {
+        return state;
+      }
+    case "TOGGLE_TODO":
+      {
+        return state;
+      }
+  }
+}
 
 /***/ })
 /******/ ]);

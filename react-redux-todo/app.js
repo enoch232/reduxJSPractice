@@ -3,27 +3,10 @@ import {
   combineReducers
 } from 'redux'
 
-let initialState = {
-  todos: [
-    {
-      title: "Do homework",
-      finished: false
-    }
-  ]
-}
+import todoReducer from './reducers/todoReducer'
 
-function todo(state = initialState, action){
-  switch(action.type){
-    case "ADD_TODO": {
-      return state
-    }
-    case "TOGGLE_TODO": {
-      return state
-    }
-  }
-}
 
-export let store = createStore(todo)
+export let store = createStore(todoReducer)
 
 store.subscribe(()=>{
   console.log("hello")
